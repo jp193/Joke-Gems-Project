@@ -15,7 +15,12 @@
     <div id="jokes">
       <!-- Jokes will be dynamically loaded here -->
     </div>
-    <button id="jokeButton">Get Joke</button>
+    <form id="jokeForm" action="/submit-form" method="POST">
+      <label for="input-field">Enter some text:</label>
+      <input type="text" id="input-field" name="user-input">
+      <br>
+      <input type="submit" value="Submit">
+    </form>
   </section>
   <section>
     <h2>Random Facts</h2>
