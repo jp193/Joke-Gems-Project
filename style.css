@@ -1,0 +1,91 @@
+/* Apply some basic styling to the page */
+html,
+body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-image: url('https://img.atlasobscura.com/x1CPqoRzlX_xUeD020NqntSvXm4ITX-akat6m8CDBNc/rt:fit/w:1280/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL2Fzc2V0/cy84ODhhYzFiODkx/NjAxZWY4Y2NfNDY4/OTM4NjQ1ODVfNTk5/Zjk4Y2UwZF9rLmpw/Zw.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #333;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+}
+
+section {
+  margin-bottom: 30px;
+  padding: 20px;
+  flex-grow: 1; /* Allow sections to grow and fill the available space */
+}
+
+h2 {
+  margin-top: 0;
+}
+
+#jokeButton,
+#factButton,
+#quoteButton {
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+#jokes,
+#facts,
+#quotes {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: rgba(105, 104, 104, 0.7);
+  font-size: 30px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+/* Center the content inside sections */
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  #jokeButton,
+  #factButton,
+  #quoteButton {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+.gone {
+    display: none;
+}
