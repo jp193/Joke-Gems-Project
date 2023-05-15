@@ -1,3 +1,10 @@
-/* body{
-  background: black;
+
+/* #submit {
+  color: black;
+background: linear-gradient(to left bottom, rgb(182, 95, 95), rgb(223, 4, 4));
+}
+
+#submit:hover {
+  color:white;
+  background: linear-gradient(to left bottom, rgb(182, 95, 95), rgb(223, 4, 4));
 } */
