@@ -19,7 +19,6 @@ function displayFetch(info) {
     quoteDiv.appendChild(div).append(quoteAuthor, quote)
     div.setAttribute('class', 'innerDiv')
     quoteDiv.classList = '';
-    console.log(info)
 }
 
 // fetch function
