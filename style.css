@@ -1,4 +1,3 @@
-/* Apply some basic styling to the page */
 html,
 body {
   height: 100%;
@@ -14,6 +13,9 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -27,37 +29,23 @@ h1 {
   margin: 0;
 }
 
-section {
-  margin-bottom: 30px;
-  padding: 20px;
-  flex-grow: 1; /* Allow sections to grow and fill the available space */
-}
-
 h2 {
   margin-top: 0;
 }
 
+#allButton,
 #jokeButton,
 #factButton,
 #quoteButton {
   background-color: #007bff;
+  opacity: 0.8;
   border: none;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
   font-size: 16px;
   padding: 10px 20px;
-}
-
-#jokes,
-#facts,
-#quotes {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  padding: 10px;
-  background-color: rgba(105, 104, 104, 0.7);
-  font-size: 30px;
+  margin: 5px;
 }
 
 footer {
@@ -65,15 +53,8 @@ footer {
   color: #fff;
   padding: 20px;
   text-align: center;
-  flex-shrink: 0; /* Prevent footer from shrinking */
-}
-
-/* Center the content inside sections */
-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  flex-shrink: 0; 
+  margin-top: auto;
 }
 
 /* Responsive design */
@@ -89,3 +70,30 @@ section {
 .gone {
     display: none;
 }
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    padding: 5px 20%;
+}
+
+#display {
+    text-align: center;
+    margin-top: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.innerDiv {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(105, 104, 104, 0.7);
+    font-size: 30px;
+    margin-top: 10px;
+}
+  
