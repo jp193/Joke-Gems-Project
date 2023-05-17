@@ -1,42 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Prude Jokes, Facts, and Quotes</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer type="text/javascript" src="script.js"></script>
+  <title>Random Jokes, Facts, and Quotes</title>
+<link rel="stylesheet" href="style.css">
+<script defer type="text/javascript" src="jamal.js"></script>
+<script defer type="text/javascript" src="david.js"></script>
+<script defer type="text/javascript"  src="michoel.js"></script>
 </head>
 <body>
   <header>
-    <h1>Welcome to Prude Jokes, Facts, and Quotes</h1>
+      <h1>Welcome to Random Jokes, Facts, and Quotes</h1>
   </header>
-  <section>
-    <h2>Random Jokes</h2>
-    <div id="jokes">
-      <!-- Jokes will be dynamically loaded here -->
-    </div>
-    <form id="jokeForm" action="/submit-form" method="POST">
-      <label for="input-field">Enter some text:</label>
-      <input type="text" id="input-field" name="user-input">
-      <br>
-      <input id = 'submit'type="submit" value="Submit">
-    </form>
-  </section>
-  <section>
-    <h2>Random Facts</h2>
-    <div id="facts">
-      <!-- Facts will be dynamically loaded here -->
-    </div>
-    <button id="factButton">Get Fact</button>
-  </section>
-  <section>
-    <h2>Random Quotes</h2>
-    <div id="quotes">
-      <!-- Quotes will be dynamically loaded here -->
-    </div>
+  <div id="buttons">
+    <button id="jokeButton">Get Joke</button>
+    <button id="factButton">Get Advice</button>
     <button id="quoteButton">Get Quote</button>
-  </section>
+    <button id="allButton">Get All</button>
+  </div>
+  <div id="display">
+  </div>
   <footer>
-    <p>&copy; 2023 Prude Jokes, Facts, and Quotes. All rights reserved.</p>
+    <p>&copy; 2023 Random Jokes, Facts, and Quotes. All rights reserved.</p>
   </footer>
 </body>
 </html>

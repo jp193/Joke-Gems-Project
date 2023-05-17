@@ -1,10 +1,96 @@
 
-/* #submit {
-  color: black;
-background: linear-gradient(to left bottom, rgb(182, 95, 95), rgb(223, 4, 4));
+html,
+body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-#submit:hover {
-  color:white;
-  background: linear-gradient(to left bottom, rgb(182, 95, 95), rgb(223, 4, 4));
-} */
+body {
+  display: flex;
+  flex-direction: column;
+  background-image: url('https://img.atlasobscura.com/x1CPqoRzlX_xUeD020NqntSvXm4ITX-akat6m8CDBNc/rt:fit/w:1280/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL2Fzc2V0/cy84ODhhYzFiODkx/NjAxZWY4Y2NfNDY4/OTM4NjQ1ODVfNTk5/Zjk4Y2UwZF9rLmpw/Zw.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+#allButton,
+#jokeButton,
+#factButton,
+#quoteButton {
+  background-color: #007bff;
+  opacity: 0.8;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 5px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  flex-shrink: 0; 
+  margin-top: auto;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  #jokeButton,
+  #factButton,
+  #quoteButton {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    padding: 5px 20%;
+}
+
+#display {
+    text-align: center;
+    margin-top: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.innerDiv {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(105, 104, 104, 0.7);
+    font-size: 30px;
+    margin-top: 10px;
+}
+
