@@ -1,31 +1,59 @@
-const subButton = document.getElementById('jokeButton')
-const askJoke = document.getElementById('jokes')
-// let newJ = askJoke.innerHTML = 'Ask a joke <br> <input></input>';
+const subButton = document.querySelector('#jokeButton')
+const addJoke = document.querySelector('#display')
+let div = document.createElement('div')
+const h2 = document.createElement('h2')
+
+//! generate a random joke category
+const urlEndpoint = ['Spooky', 'Pun', 'Christmas', 'Programming', 'Misc']
+const randomNumber = Math.floor(Math.random() * urlEndpoint.length)
+const randomJoke = urlEndpoint[randomNumber]
 
 
-subButton.style.background = 'linear-gradient(to left bottom, rgb(182, 95, 95), rgb(223, 4, 4))'
- 
-subButton.addEventListener('mouseover', () => { 
-  subButton.style.background = 'linear-gradient(to left bottom, rgb(182, 95, 95), rgb(223, 4, 4))'
-  subButton.style.color = 'white'
-})
-subButton.addEventListener('mouseout', () => { 
-  subButton.style.background = 'linear-gradient(to left bottom, rgb(182, 95, 95), rgb(223, 4, 4))'
-  subButton.style.color = 'black'
-})
+function fetchAndProcessData() {
+  subButton.addEventListener('click', () => {
+    addJoke.textContent = ''
+        //!  fetch the joke from the API    
+        fetch(`https://v2.jokeapi.dev/joke/${randomJoke}`)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            //!   There are two different types of joke styles in the API. If statement checks for which.
+          if (typeof data.joke !== 'undefined') {
+            inputJoke('WANNA HEAR A JOKE?')
+              setTimeout(() => { 
+                inputJoke(`Category Is: ${data.category}`);
+                }, 3000);
+                setTimeout(() => { 
+                  inputJoke(`${data.joke}`);
+                  }, 6000);
+                } else if (typeof data.setup !== 'undefined') {
+            inputJoke(`Ok So: ${data.setup}`);
+                    setTimeout(() => {
+                      inputJoke(`${data.delivery}`);
+                      }, 3000);
+                      setTimeout(() => {
+                        inputJoke(`LOL`);
+                      }, 7000);
+                      } else {
+                          console.log('Results are undefined. Restarting fetch request...');
+          fetchAndProcessData();
+        }
+      })
+      //! catch any errors
+      .catch(error => {
+          console.log('An error occurred:', error);
+        });
+  });
 
-subButton.addEventListener('click', () => {
-  fetch('https://v2.jokeapi.dev/joke/Any')
-    .then(response => {
-      if (response.ok) {
-        console.log('it worked')
-        return response.json()
-      } throw new Error('Request failed!')
-    }, networkError => console.log(networkError.message))
-    .then(data => {
-      console.log(data)
-      askJoke.innerHTML = `${data.category} ${data.setup} ${data.delivery}`
-    })
-    .catch(error => console.log(error))
-})
+}
+  
+const inputJoke = (joke) => { 
+  h2.textContent = joke
+  h2.setAttribute('class', 'innerDiv')
+  addJoke.append(h2)
+         setTimeout(() => { 
+              location.reload();
+            },10000)
+}
 
+  fetchAndProcessData()
