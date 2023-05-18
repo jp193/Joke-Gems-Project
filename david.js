@@ -6,29 +6,48 @@ const saveBtn = document.querySelector('#save');
 const display = document.querySelector('#display');
 const alreadySavedButton = document.querySelector('#savedButton')
 
-quoteBtn.addEventListener('click', (e) => {
+const imageDiv = document.querySelector('#container');
+const header = document.querySelector('#myHeader');
+
+
+quoteBtn.addEventListener('click', () => {
+  imageDiv.style.backgroundImage = 'url(https://media.istockphoto.com/photos/vintage-old-red-quill-pen-with-inkwell-on-wooden-table-front-gradient-picture-id1055062454?b=1&k=20&m=1055062454&s=612x612&w=0&h=SZLDqcpErhD927Yb1TgvXLb4FK2XKe83YcQ1kQ8Jaic='
+  header.style.color = 'black';
     fetchFn(displayFetch)
     clearDiv()
 })
 
 factButton.addEventListener('click', () => {
+  imageDiv.style.backgroundImage = 'url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9d93b732-63f7-46af-b8e6-63f1cff45ed9/deqa0c7-892c58f0-5972-42d3-b8d6-e5e36fce0c6f.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzlkOTNiNzMyLTYzZjctNDZhZi1iOGU2LTYzZjFjZmY0NWVkOVwvZGVxYTBjNy04OTJjNThmMC01OTcyLTQyZDMtYjhkNi1lNWUzNmZjZTBjNmYucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.NydjPUVhfl6mYIGlfUol1sDbgo8HYL6BJ9IZWLV82r0)'
+  header.style.color = 'black';
     adviceFetch()
     clearDiv()
 })
 
 function fetchAndProcessData() {
-    subButton.addEventListener('click', () => {
-      clearDiv()
+  subButton.addEventListener('click', () => {
+    imageDiv.style.backgroundImage = 'url(https://npr.brightspotcdn.com/legacy/sites/kmuw/files/201703/stand-up-comedy.jpg)'
+    header.style.color = 'white';
+    clearDiv()
       fetchJoke()
     });
 }
 
-allBtn.addEventListener('click', () => {
-    clearDiv()
-    adviceFetch()
-    fetchFn(displayFetch)
-    setTimeout(fetchJoke, 250)
-})
+
+
+
+allBtn.addEventListener('click', async () => {
+  imageDiv.style.backgroundImage = 'url(https://www.techrepublic.com/wp-content/uploads/2021/08/gettyimages-carlosgaw-e1642695622636.jpg)'
+  header.style.color = 'white';
+  clearDiv();
+  try {
+    await fetchFn(displayFetch);
+    await adviceFetch();
+    await fetchJoke();
+  } catch (error) {
+    console.log('An error occurred:', error);
+  }
+});
 
   let key = 0
   const saved = []
@@ -46,6 +65,7 @@ saveBtn.addEventListener('click', () => {
     console.log(saved)
     renderSavedElements(saved)
 })
+
 function renderSavedElements(saved) {
        clearDiv()
        document.querySelector('.saved').textContent = ''
@@ -69,6 +89,7 @@ document.querySelector('#savedButton').addEventListener('click', () => {
     alreadySavedButton.textContent = 'Saved Content' : alreadySavedButton.textContent = 'Close Saved'
     document.querySelector('#lastDiv').classList.toggle("saved");
 })
+
 function fetchFn(callBack) {
     fetch('https://api.quotable.io/quotes/random?limit=3')
 .then(resp => resp.json())
@@ -88,7 +109,7 @@ function fetchJoke() {
     .then(data => {
         if (typeof data.setup !== 'undefined') {
             inputJoke(`OK So: ${data.setup} ${data.delivery} `);
-        } else if (typeof data.joke !== undefined) {
+        } else if (typeof data.joke !== 'undefined') {
             inputJoke(`${data.joke}`)
         } else {
           fetchAndProcessData();
@@ -97,20 +118,17 @@ function fetchJoke() {
 }
 
 function clearDiv() {
-    display.textContent = '';
+  display.textContent = '';
 }
 
 function displayFetch(info) {
     const quoteAuthor = document.createElement('h2');
     const quote = document.createElement('p');
     const div = document.createElement('div')
-    
     quoteAuthor.textContent = `Author: ${info[0].author}`;
     quote.textContent = info[0].content;
-
     display.appendChild(div).append(quoteAuthor, quote)
     div.setAttribute('class', 'innerDiv')
-
 }
 
 function renderFacts(advice) {
@@ -121,7 +139,8 @@ function renderFacts(advice) {
    p.textContent = advice.slip.advice
    let div = document.createElement('div')
    div.setAttribute('class', 'innerDiv')
-   display.appendChild(div).append(h2, p)
+  display.appendChild(div).append(h2, p)
+  
 }
 
 //! generate a random joke category
@@ -135,7 +154,7 @@ const inputJoke = (joke) => {
     h2.textContent = joke;
     h2.setAttribute('class', 'innerDiv');
     div.appendChild(h2);
-    display.appendChild(div);
+  display.appendChild(div);
   }
 
 fetchAndProcessData()
