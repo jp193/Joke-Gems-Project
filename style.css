@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box; 
+  margin: 0
+}
 
 html,
 body {
@@ -10,17 +14,25 @@ body {
 body {
   display: flex;
   flex-direction: column;
-  background-image: url('https://img.atlasobscura.com/x1CPqoRzlX_xUeD020NqntSvXm4ITX-akat6m8CDBNc/rt:fit/w:1280/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL2Fzc2V0/cy84ODhhYzFiODkx/NjAxZWY4Y2NfNDY4/OTM4NjQ1ODVfNTk5/Zjk4Y2UwZF9rLmpw/Zw.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #333;
+  background: linear-gradient(to left bottom, rgb(129, 117, 117), rgb(32, 29, 29));
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+#container {
+  margin: 0 auto;
+  background-image: url('https://img.atlasobscura.com/x1CPqoRzlX_xUeD020NqntSvXm4ITX-akat6m8CDBNc/rt:fit/w:1280/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL2Fzc2V0/cy84ODhhYzFiODkx/NjAxZWY4Y2NfNDY4/OTM4NjQ1ODVfNTk5/Zjk4Y2UwZF9rLmpw/Zw.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 90vh;
+  width: 90vw;
+  
+}
+
 header {
-  background-color: #333;
+  /* background-color: #333; */
   color: #fff;
   padding: 20px;
   text-align: center;
@@ -51,7 +63,7 @@ h2 {
 }
 
 footer {
-  background-color: #333;
+  /* background-color: #333; */
   color: #fff;
   padding: 20px;
   text-align: center;
@@ -75,7 +87,20 @@ footer {
     justify-content: space-evenly;
     padding: 5px 20%;
 }
-
+#jokeButton:hover,
+  #factButton:hover,
+  #quoteButton:hover,
+  #allButton:hover {
+    background-color: #fff;
+    color: #007bff;
+}
+#jokeButton:active,
+  #factButton:active,
+  #quoteButton:active,
+  #allButton:active {
+    background-color: #007bff;
+    color: #fff;
+}
 #display {
     text-align: center;
     margin-top: 20px;
@@ -94,4 +119,5 @@ footer {
     font-size: 30px;
     margin-top: 10px;
 }
+
 
