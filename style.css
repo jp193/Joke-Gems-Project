@@ -45,7 +45,7 @@ h1 {
 h2 {
   margin-top: 0;
 }
-
+#savedButton,
 #save,
 #allButton,
 #jokeButton,
@@ -119,5 +119,15 @@ footer {
     font-size: 30px;
     margin-top: 10px;
 }
+.savedElements {
+  color: #007bff;
+}
+.saved {
+  display: none;
+}
+#lastDiv {
+  text-align: center;
+}
+
 
 

@@ -4,8 +4,11 @@ const subButton = document.querySelector('#jokeButton');
 const allBtn = document.querySelector('#allButton');
 const saveBtn = document.querySelector('#save');
 const display = document.querySelector('#display');
+const alreadySavedButton = document.querySelector('#savedButton')
+
 const imageDiv = document.querySelector('#container');
 const header = document.querySelector('#myHeader');
+
 
 quoteBtn.addEventListener('click', () => {
   imageDiv.style.backgroundImage = 'url(https://media.istockphoto.com/photos/vintage-old-red-quill-pen-with-inkwell-on-wooden-table-front-gradient-picture-id1055062454?b=1&k=20&m=1055062454&s=612x612&w=0&h=SZLDqcpErhD927Yb1TgvXLb4FK2XKe83YcQ1kQ8Jaic='
@@ -30,6 +33,9 @@ function fetchAndProcessData() {
     });
 }
 
+
+
+
 allBtn.addEventListener('click', async () => {
   imageDiv.style.backgroundImage = 'url(https://www.techrepublic.com/wp-content/uploads/2021/08/gettyimages-carlosgaw-e1642695622636.jpg)'
   header.style.color = 'white';
@@ -46,9 +52,44 @@ allBtn.addEventListener('click', async () => {
   let key = 0
   const saved = []
 saveBtn.addEventListener('click', () => {
-    saved.push(display.firstChild.querySelector('h2').textContent + ' ' + display.firstChild.querySelector('p').textContent)
+    let arr = []
+    let pTag = display.firstChild.querySelector('p')
+    if (pTag === null) {
+        console.log('error')
+        arr.push([display.firstChild.querySelector('h2').textContent])
+    } else {
+        arr.push([display.firstChild.querySelector('h2').textContent])
+        arr.push([display.firstChild.querySelector('p').textContent])
+    }
+    saved.push(arr)
     console.log(saved)
+    renderSavedElements(saved)
 })
+
+function renderSavedElements(saved) {
+       clearDiv()
+       document.querySelector('.saved').textContent = ''
+       for (const element of saved) {
+        console.log(element[1])
+        let div = document.createElement('div')
+        let h2 = document.createElement('h2')
+        let p = document.createElement('p')
+        h2.textContent = element[0]
+        p.textContent = element[1]
+        h2.classList.add('savedElements')
+        p.classList.add('savedElements')
+        div.classList.add('innerDiv')
+        div.append(h2, p)
+        document.querySelector('.saved').append(div)
+       }
+}
+
+document.querySelector('#savedButton').addEventListener('click', () => {
+    alreadySavedButton.textContent === 'Saved Content'?
+    alreadySavedButton.textContent = 'Saved Content' : alreadySavedButton.textContent = 'Close Saved'
+    document.querySelector('#lastDiv').classList.toggle("saved");
+})
+
 function fetchFn(callBack) {
     fetch('https://api.quotable.io/quotes/random?limit=3')
 .then(resp => resp.json())
