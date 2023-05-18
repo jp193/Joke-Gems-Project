@@ -2,9 +2,10 @@ const quoteBtn = document.querySelector('#quoteButton');
 const factButton = document.querySelector('#factButton');
 const subButton = document.querySelector('#jokeButton');
 const allBtn = document.querySelector('#allButton');
+const saveBtn = document.querySelector('#save');
 const display = document.querySelector('#display');
 
-quoteBtn.addEventListener('click', () => {
+quoteBtn.addEventListener('click', (e) => {
     fetchFn(displayFetch)
     clearDiv()
 })
@@ -26,6 +27,12 @@ allBtn.addEventListener('click', () => {
     adviceFetch()
     fetchFn(displayFetch)
     setTimeout(fetchJoke, 250)
+})
+  let key = 0
+  const saved = []
+saveBtn.addEventListener('click', () => {
+    saved.push(display.firstChild.querySelector('h2').textContent + ' ' + display.firstChild.querySelector('p').textContent)
+    console.log(saved)
 })
 
 function fetchFn(callBack) {
