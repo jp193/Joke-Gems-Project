@@ -4,6 +4,7 @@ const subButton = document.querySelector('#jokeButton');
 const allBtn = document.querySelector('#allButton');
 const saveBtn = document.querySelector('#save');
 const display = document.querySelector('#display');
+const alreadySavedButton = document.querySelector('#savedButton')
 
 quoteBtn.addEventListener('click', (e) => {
     fetchFn(displayFetch)
@@ -28,13 +29,46 @@ allBtn.addEventListener('click', () => {
     fetchFn(displayFetch)
     setTimeout(fetchJoke, 250)
 })
+
   let key = 0
   const saved = []
 saveBtn.addEventListener('click', () => {
-    saved.push(display.firstChild.querySelector('h2').textContent + ' ' + display.firstChild.querySelector('p').textContent)
+    let arr = []
+    let pTag = display.firstChild.querySelector('p')
+    if (pTag === null) {
+        console.log('error')
+        arr.push([display.firstChild.querySelector('h2').textContent])
+    } else {
+        arr.push([display.firstChild.querySelector('h2').textContent])
+        arr.push([display.firstChild.querySelector('p').textContent])
+    }
+    saved.push(arr)
     console.log(saved)
+    renderSavedElements(saved)
 })
+function renderSavedElements(saved) {
+       clearDiv()
+       document.querySelector('.saved').textContent = ''
+       for (const element of saved) {
+        console.log(element[1])
+        let div = document.createElement('div')
+        let h2 = document.createElement('h2')
+        let p = document.createElement('p')
+        h2.textContent = element[0]
+        p.textContent = element[1]
+        h2.classList.add('savedElements')
+        p.classList.add('savedElements')
+        div.classList.add('innerDiv')
+        div.append(h2, p)
+        document.querySelector('.saved').append(div)
+       }
+}
 
+document.querySelector('#savedButton').addEventListener('click', () => {
+    alreadySavedButton.textContent === 'Saved Content'?
+    alreadySavedButton.textContent = 'Saved Content' : alreadySavedButton.textContent = 'Close Saved'
+    document.querySelector('#lastDiv').classList.toggle("saved");
+})
 function fetchFn(callBack) {
     fetch('https://api.quotable.io/quotes/random?limit=3')
 .then(resp => resp.json())
