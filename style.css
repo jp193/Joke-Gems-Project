@@ -28,7 +28,7 @@ body {
   background-size: cover;
   height: 90vh;
   width: 90vw;
-  
+  overflow: auto;
 }
 
 header {
@@ -90,14 +90,18 @@ footer {
 #jokeButton:hover,
   #factButton:hover,
   #quoteButton:hover,
-  #allButton:hover {
+  #allButton:hover,
+  #save:hover,
+  #savedButton:hover {
     background-color: #fff;
     color: #007bff;
 }
 #jokeButton:active,
   #factButton:active,
   #quoteButton:active,
-  #allButton:active {
+  #allButton:active,
+  #save:active,
+  #saveButtond:active {
     background-color: #007bff;
     color: #fff;
 }
@@ -107,7 +111,6 @@ footer {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    
 }
 
 .innerDiv {
@@ -120,14 +123,13 @@ footer {
     margin-top: 10px;
 }
 .savedElements {
-  color: #007bff;
+  color: black;
+  display: center
 }
 .saved {
   display: none;
 }
+
 #lastDiv {
   text-align: center;
 }
-
-
-

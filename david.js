@@ -1,3 +1,4 @@
+//! Global Variables
 const quoteBtn = document.querySelector('#quoteButton');
 const factButton = document.querySelector('#factButton');
 const subButton = document.querySelector('#jokeButton');
@@ -5,11 +6,11 @@ const allBtn = document.querySelector('#allButton');
 const saveBtn = document.querySelector('#save');
 const display = document.querySelector('#display');
 const alreadySavedButton = document.querySelector('#savedButton')
-
 const imageDiv = document.querySelector('#container');
 const header = document.querySelector('#myHeader');
 
 
+//! Click event listeners
 quoteBtn.addEventListener('click', () => {
   imageDiv.style.backgroundImage = 'url(https://media.istockphoto.com/photos/vintage-old-red-quill-pen-with-inkwell-on-wooden-table-front-gradient-picture-id1055062454?b=1&k=20&m=1055062454&s=612x612&w=0&h=SZLDqcpErhD927Yb1TgvXLb4FK2XKe83YcQ1kQ8Jaic='
   header.style.color = 'black';
@@ -33,22 +34,16 @@ function fetchAndProcessData() {
     });
 }
 
-
-
-
-allBtn.addEventListener('click', async () => {
-  imageDiv.style.backgroundImage = 'url(https://www.techrepublic.com/wp-content/uploads/2021/08/gettyimages-carlosgaw-e1642695622636.jpg)'
+allBtn.addEventListener('click', () => {
+  imageDiv.style.backgroundImage = 'url(https://www.techrepublic.com/wp-content/uploads/2021/08/gettyimages-carlosgaw-e1642695622636.jpg)';
   header.style.color = 'white';
-  clearDiv();
-  try {
-    await fetchFn(displayFetch);
-    await adviceFetch();
-    await fetchJoke();
-  } catch (error) {
-    console.log('An error occurred:', error);
-  }
+  clearDiv()
+  fetchFn(displayFetch)
+  setTimeout(adviceFetch(), 10000)
+  setTimeout(fetchJoke(), 10000)
 });
 
+//! Save button event listener/Functionality
   let key = 0
   const saved = []
 saveBtn.addEventListener('click', () => {
@@ -65,6 +60,11 @@ saveBtn.addEventListener('click', () => {
     console.log(saved)
     renderSavedElements(saved)
 })
+
+function clearDiv() {
+  display.textContent = '';
+  
+}
 
 function renderSavedElements(saved) {
        clearDiv()
@@ -84,12 +84,40 @@ function renderSavedElements(saved) {
        }
 }
 
-document.querySelector('#savedButton').addEventListener('click', () => {
-    alreadySavedButton.textContent === 'Saved Content'?
-    alreadySavedButton.textContent = 'Saved Content' : alreadySavedButton.textContent = 'Close Saved'
+
+alreadySavedButton.addEventListener('click', () => {
+  clearDiv()
+  if (alreadySavedButton.textContent === 'Saved Content') {
+    alreadySavedButton.textContent = 'Close Saved'
     document.querySelector('#lastDiv').classList.toggle("saved");
+  } else if (alreadySavedButton.textContent === 'Close Saved') {
+    alreadySavedButton.textContent = 'Saved Content'
+    document.querySelector('#lastDiv').classList.toggle("saved");
+  }
 })
 
+//? Temporarely Removes Buttons When in Saved Content - Not working 
+// let originalButtonsHTML; // Variable to store the original HTML content of buttonsId
+// alreadySavedButton.addEventListener('click', () => {
+//   const buttonsId = document.querySelector('#buttons');
+//   const lastDiv = document.querySelector('#lastDiv');
+
+//   if (alreadySavedButton.textContent === 'Saved Content') {
+//     alreadySavedButton.textContent = 'Close Saved';
+
+//     originalButtonsHTML = buttonsId.innerHTML;
+//     buttonsId.innerHTML = '';
+//     buttonsId.appendChild(alreadySavedButton);
+//     lastDiv.classList.toggle('saved');
+//   } else if (alreadySavedButton.textContent === 'Close Saved') {
+//     alreadySavedButton.textContent = 'Saved Content';
+//     buttonsId.innerHTML = originalButtonsHTML;
+
+//     lastDiv.classList.toggle('saved');
+//   }
+// });
+
+//! Fetch requests
 function fetchFn(callBack) {
     fetch('https://api.quotable.io/quotes/random?limit=3')
 .then(resp => resp.json())
@@ -101,24 +129,6 @@ function adviceFetch() {
     .then(resp => resp.json())
     .then((advice) => {
         renderFacts(advice) })
-}
-
-function fetchJoke() {
-    fetch(`https://v2.jokeapi.dev/joke/${randomJoke}`)
-    .then(response => response.json())
-    .then(data => {
-        if (typeof data.setup !== 'undefined') {
-            inputJoke(`OK So: ${data.setup} ${data.delivery} `);
-        } else if (typeof data.joke !== 'undefined') {
-            inputJoke(`${data.joke}`)
-        } else {
-          fetchAndProcessData();
-        }
-    })
-}
-
-function clearDiv() {
-  display.textContent = '';
 }
 
 function displayFetch(info) {
@@ -148,13 +158,29 @@ const urlEndpoint = ['Spooky', 'Pun', 'Christmas', 'Programming' ]
 const randomNumber = Math.floor(Math.random() * urlEndpoint.length)
 const randomJoke = urlEndpoint[randomNumber]
 
+
+
+function fetchJoke() {
+  fetch(`https://v2.jokeapi.dev/joke/${randomJoke}`)
+  .then(response => response.json())
+  .then(data => {
+      if (typeof data.setup !== 'undefined') {
+          inputJoke(`Ok so: ${data.setup} ${data.delivery} `);
+      } else if (typeof data.joke !== 'undefined') {
+          inputJoke(`${data.joke}`)
+      } else {
+        fetchAndProcessData();
+      }
+  })
+}
+
 const inputJoke = (joke) => {
-    const div = document.createElement('div');
-    const h2 = document.createElement('h2');
-    h2.textContent = joke;
-    h2.setAttribute('class', 'innerDiv');
-    div.appendChild(h2);
-  display.appendChild(div);
-  }
+  const div = document.createElement('div');
+  const h2 = document.createElement('h2');
+  h2.textContent = joke;
+  h2.setAttribute('class', 'innerDiv');
+  div.appendChild(h2);
+display.appendChild(div);
+}
 
 fetchAndProcessData()
