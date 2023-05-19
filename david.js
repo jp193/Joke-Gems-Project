@@ -90,32 +90,21 @@ alreadySavedButton.addEventListener('click', () => {
   if (alreadySavedButton.textContent === 'Saved Content') {
     alreadySavedButton.textContent = 'Close Saved'
     document.querySelector('#lastDiv').classList.toggle("saved");
+    quoteBtn.classList = 'saved'
+    factButton.classList = 'saved'
+    subButton.classList = 'saved'
+    allBtn.classList = 'saved'
+    saveBtn.classList = 'saved'
   } else if (alreadySavedButton.textContent === 'Close Saved') {
     alreadySavedButton.textContent = 'Saved Content'
     document.querySelector('#lastDiv').classList.toggle("saved");
+    quoteBtn.classList = ''
+    factButton.classList = ''
+    subButton.classList = ''
+    allBtn.classList = ''
+    saveBtn.classList = ''
   }
 })
-
-//? Temporarely Removes Buttons When in Saved Content - Not working 
-// let originalButtonsHTML; // Variable to store the original HTML content of buttonsId
-// alreadySavedButton.addEventListener('click', () => {
-//   const buttonsId = document.querySelector('#buttons');
-//   const lastDiv = document.querySelector('#lastDiv');
-
-//   if (alreadySavedButton.textContent === 'Saved Content') {
-//     alreadySavedButton.textContent = 'Close Saved';
-
-//     originalButtonsHTML = buttonsId.innerHTML;
-//     buttonsId.innerHTML = '';
-//     buttonsId.appendChild(alreadySavedButton);
-//     lastDiv.classList.toggle('saved');
-//   } else if (alreadySavedButton.textContent === 'Close Saved') {
-//     alreadySavedButton.textContent = 'Saved Content';
-//     buttonsId.innerHTML = originalButtonsHTML;
-
-//     lastDiv.classList.toggle('saved');
-//   }
-// });
 
 //! Fetch requests
 function fetchFn(callBack) {
