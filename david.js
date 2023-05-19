@@ -50,14 +50,12 @@ saveBtn.addEventListener('click', () => {
     let arr = []
     let pTag = display.firstChild.querySelector('p')
     if (pTag === null) {
-        console.log('error')
         arr.push([display.firstChild.querySelector('h2').textContent])
     } else {
         arr.push([display.firstChild.querySelector('h2').textContent])
         arr.push([display.firstChild.querySelector('p').textContent])
     }
     saved.push(arr)
-    console.log(saved)
     renderSavedElements(saved)
 })
 
@@ -65,23 +63,32 @@ function clearDiv() {
   display.textContent = '';
   
 }
-
 function renderSavedElements(saved) {
        clearDiv()
-       document.querySelector('.saved').textContent = ''
+       if (document.querySelector('.saved').textContent !== '') {
+        document.querySelector('.saved').textContent = ''
+       }
        for (const element of saved) {
         console.log(element[1])
         let div = document.createElement('div')
         let h2 = document.createElement('h2')
         let p = document.createElement('p')
+        let deleteButton = document.createElement('button')
+        deleteButton.textContent = 'delete'
+        deleteButton.classList.add('deleteBtn')
         h2.textContent = element[0]
         p.textContent = element[1]
         h2.classList.add('savedElements')
         p.classList.add('savedElements')
         div.classList.add('innerDiv')
-        div.append(h2, p)
+        
+        div.append(h2, p, deleteButton)
         document.querySelector('.saved').append(div)
+        deleteButton.addEventListener('click', (e) => {
+          deleteButton.parentNode.remove()
+        })
        }
+       
 }
 
 
